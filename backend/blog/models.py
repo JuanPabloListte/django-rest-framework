@@ -7,9 +7,9 @@ def user_directory_path(instance, filename):
 
 class Post(models.Model):
 
-    class PostObjects():
+    class PostObjects(models.Manager):
         def get_queryset(self):
-            return super().get_queryset().filter(status='published')
+            return super().get_queryset() .filter(status='published')
 
     options = (
         ('draft', 'Draft'),
@@ -17,7 +17,7 @@ class Post(models.Model):
     )
 
     title = models.CharField(max_length=250)
-    thumnail = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
+    thumbnail = models.ImageField(upload_to=user_directory_path, blank=True, null=True)
     excerpt = models.TextField(null=True)
     content = models.TextField()
     slug = models.SlugField(max_length=250, unique_for_date='published', null=False, unique=True)
